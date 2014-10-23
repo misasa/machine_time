@@ -2,12 +2,18 @@
 <div class="page-header">
   <h1><%=t '.title', :default => @machine.name %></h1>
 </div>
-
+<p>
+<%= @machine.description %>
+</p>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:state) %>:</strong></dt>
   <dd><%= @machine.state %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @machine.description %></dd>
+  <% if @machine.current_session %>
+  <dt><strong><%= model_class.human_attribute_name(:session) %>:</strong></dt>
+  <dd><%= @machine.current_session.name %> &lt <%= @machine.current_session.global_id %> &gt</dd>  
+  <dt><strong><%= model_class.human_attribute_name(:started_at) %>:</strong></dt>
+  <dd><%= @machine.current_session.started_at %></dd>  
+  <% end %>
 </dl>
 
 <div class="form-actions">
@@ -25,3 +31,22 @@
               :class => 'btn' %>
 
 </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:session) %></th>
+      <th><%= model_class.human_attribute_name(:started_at) %></th>
+      <th><%= model_class.human_attribute_name(:stopped_at) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @machine.sessions_finished.order(started_at: :desc).each do |session| %>
+      <tr>
+        <td><%= session.name %> &lt <%= session.global_id %>&gt</td>
+        <td><%= session.started_at %></td>
+        <td><%= session.stopped_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

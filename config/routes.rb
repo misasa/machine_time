@@ -1,4 +1,6 @@
 MachineTime::Application.routes.draw do
+  resources :sessions
+
   root :to => 'machines#index'
   resources :machines do
     member do

@@ -13,13 +13,15 @@ RSpec.describe Machine, :type => :model do
       it{expect(obj.can_stop?).to be_truthy }
       it{expect(obj.start).to be_falsey }
       it{expect{obj.start!}.to raise_error }
+      it{expect(obj.current_session).to be_present }      
     end
   end
 
   describe ".stop" do
   	subject { obj.state }
-    let(:obj){FactoryGirl.create(:machine, state: 'running')}
+    let(:obj){FactoryGirl.create(:machine, state: 'stopped')}
     before {
+    	obj.start
     	obj.stop
     }
     context "state is stopped" do
@@ -30,6 +32,8 @@ RSpec.describe Machine, :type => :model do
       it{expect(obj.can_stop?).to be_falsey }
       it{expect(obj.stop).to be_falsey}
 	  it{expect{obj.stop!}.to raise_error}  
+      it{expect(obj.last_session).to be_present }
+      it{expect(obj.current_session).not_to be_present}	  
     end
   end
 
