@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20141023042756) do
   create_table "machines", force: true do |t|
     t.string   "name"
     t.text     "description"
+    t.string   "state"
+    t.string   "session_prefix"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

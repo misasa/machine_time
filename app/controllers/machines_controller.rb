@@ -1,5 +1,5 @@
 class MachinesController < ApplicationController
-  before_action :set_machine, only: [:show, :edit, :update, :destroy]
+  before_action :set_machine, only: [:show, :edit, :update, :start, :stop, :destroy]
 
   # GET /machines
   # GET /machines.json
@@ -51,6 +51,34 @@ class MachinesController < ApplicationController
     end
   end
 
+  # PATCH/PUT /machines/1/start
+  # PATCH/PUT /machines/1/start.json
+  def start
+    respond_to do |format|
+      if @machine.start
+        format.html { redirect_to @machine, notice: 'Machine was successfully started.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @machine, error: 'Machine can not be started.' }
+        format.json { render json: @machine.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+
+  # PATCH/PUT /machines/1/start
+  # PATCH/PUT /machines/1/start.json
+  def stop
+    respond_to do |format|
+      if @machine.stop
+        format.html { redirect_to @machine, notice: 'Machine was successfully stopped.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to @machine, error: 'Machine can not be sttopped.' }
+        format.json { render json: @machine.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # DELETE /machines/1
   # DELETE /machines/1.json
   def destroy

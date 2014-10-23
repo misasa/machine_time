@@ -132,6 +132,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sequenced (1.6.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -146,6 +149,7 @@ GEM
       colorize
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    state_machine (1.2.0)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -190,7 +194,9 @@ DEPENDENCIES
   rspec-rails (~> 3.1.0)
   sass-rails (~> 4.0.0)
   sdoc
+  sequenced
   sqlite3
+  state_machine
   therubyracer
   turbolinks
   twitter-bootstrap-rails

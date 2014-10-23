@@ -4,6 +4,7 @@ class CreateMachines < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.string :state
+      t.string :session_prefix      
       t.timestamps
     end
   end

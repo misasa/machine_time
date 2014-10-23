@@ -24,11 +24,13 @@ RSpec.describe MachinesController, :type => :controller do
   # Machine. As you add validations to Machine, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+#    skip("Add a hash of attributes valid for your model")
+    { name: 'test-machine' }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    { name: nil }
+    #skip("Add a hash of attributes invalid for your model")
   }
 
   # This should return the minimal set of values that should be in the session
@@ -100,7 +102,7 @@ RSpec.describe MachinesController, :type => :controller do
     end
   end
 
-  describe "PUT update" do
+  describe "PUT update", :current => true do
     describe "with valid params" do
       let(:new_attributes) {
         skip("Add a hash of attributes valid for your model")
@@ -141,6 +143,81 @@ RSpec.describe MachinesController, :type => :controller do
     end
   end
 
+  describe "PUT start", :current => true do
+    describe "with machine stopped" do
+      let(:machine){ Machine.create! valid_attributes }
+      it "updates the requested machine" do
+        put :start, {:id => machine.to_param}, valid_session
+        machine.reload
+        expect(machine.state).to eql('running')
+      end
+
+      it "assigns the requested machine as @machine" do
+        put :start, {:id => machine.to_param}, valid_session
+        expect(assigns(:machine)).to eq(machine)
+      end
+
+      it "redirects to the machine" do
+        put :start, {:id => machine.to_param}, valid_session
+        expect(response).to redirect_to(machine)
+      end
+    end
+
+    describe "with machine started" do
+      let(:machine) { Machine.create! valid_attributes }
+      before do
+        machine.start
+      end
+      it "assigns the machine as @machine" do
+        put :start, {:id => machine.to_param }, valid_session
+        expect(assigns(:machine)).to eq(machine)
+      end
+
+      it "re-renders the 'edit' template" do
+        put :start, {:id => machine.to_param }, valid_session
+        expect(response).to redirect_to(machine)
+      end
+    end
+  end
+
+
+  describe "PUT stop", :current => true do
+    describe "with machine stopped" do
+      let(:machine){ Machine.create! valid_attributes }
+      it "updates the requested machine" do
+        put :stop, {:id => machine.to_param}, valid_session
+        machine.reload
+        expect(machine.state).to eql('stopped')
+      end
+
+      it "assigns the requested machine as @machine" do
+        put :stop, {:id => machine.to_param}, valid_session
+        expect(assigns(:machine)).to eq(machine)
+      end
+
+      it "redirects to the machine" do
+        put :stop, {:id => machine.to_param}, valid_session
+#        expect(response).to redirect_to(machine)
+        expect(response).to redirect_to(machine)
+      end
+    end
+
+    describe "with machine started" do
+      let(:machine) { Machine.create! valid_attributes }
+      before do
+        machine.start
+      end
+      it "assigns the machine as @machine" do
+        put :stop, {:id => machine.to_param }, valid_session
+        expect(assigns(:machine)).to eq(machine)
+      end
+
+      it "re-renders the 'edit' template" do
+        put :stop, {:id => machine.to_param }, valid_session
+        expect(response).to redirect_to(machine)
+      end
+    end
+  end
   describe "DELETE destroy" do
     it "destroys the requested machine" do
       machine = Machine.create! valid_attributes

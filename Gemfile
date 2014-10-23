@@ -47,6 +47,8 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'twitter-bootstrap-rails'
+gem 'state_machine'
+gem 'sequenced'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
