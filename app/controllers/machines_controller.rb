@@ -1,5 +1,5 @@
 class MachinesController < ApplicationController
-  before_action :set_machine, only: [:show, :edit, :update, :start, :stop, :destroy]
+  before_action :set_machine, only: [:show, :current_session, :edit, :update, :start, :stop, :destroy]
 
   # GET /machines
   # GET /machines.json
@@ -10,6 +10,20 @@ class MachinesController < ApplicationController
   # GET /machines/1
   # GET /machines/1.json
   def show
+  end
+
+  # GET /machines/1/session
+  # GET /machines/1/session.json
+  def current_session
+    respond_to do |format|
+      if @machine.current_session
+         format.html { render action: 'show' }
+         format.json { render json: @machine.current_session }
+      else
+         format.html { render action: 'show' }        
+         format.json { render json: {} }      
+      end
+    end
   end
 
   # GET /machines/new

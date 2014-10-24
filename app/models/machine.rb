@@ -1,4 +1,6 @@
 class Machine < ActiveRecord::Base
+	include HasGlobalId
+
 	has_many :sessions
 
 	validates :name, presence:true

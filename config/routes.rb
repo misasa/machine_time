@@ -4,6 +4,7 @@ MachineTime::Application.routes.draw do
   root :to => 'machines#index'
   resources :machines do
     member do
+      get 'current_session'
       put 'start'
       put 'stop'
     end

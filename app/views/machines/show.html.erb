@@ -1,6 +1,6 @@
 <%- model_class = Machine -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => @machine.name %></h1>
+  <h1><%=t '.title', :default => @machine.name %> &lt <%= @machine.global_id %> &gt</h1>
 </div>
 <p>
 <%= @machine.description %>

@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20141023083806) do
 
   create_table "machines", force: true do |t|
+    t.string   "global_id"
     t.string   "name"
     t.text     "description"
     t.string   "state"
