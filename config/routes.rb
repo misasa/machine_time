@@ -1,5 +1,5 @@
 MachineTime::Application.routes.draw do
-  resources :sessions
+#  resources :sessions
 
   root :to => 'machines#index'
   resources :machines do
@@ -8,6 +8,7 @@ MachineTime::Application.routes.draw do
       put 'start'
       put 'stop'
     end
+    resources :sessions
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

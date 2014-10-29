@@ -16,7 +16,7 @@
 # used to set extended properties on the server.
 server 'devel.misasa.okayama-u.ac.jp', user: 'falcon', roles: %w{web app db}, ssh_options: { keys: %w{/home/sisyphus/.ssh/id_rsa} }
 
-set :relative_url_root, "/machine-time"
+set :relative_url_root, "/machine"
 
 
 # Custom SSH Options
