@@ -44,7 +44,6 @@ RSpec.describe SessionsController, :type => :controller do
       session = Session.create! valid_attributes
       get :index, {:machine_id => machine.id}, valid_session
       expect(assigns(:sessions)).to eq([session])
-      expect(response.body).to be_nil
     end
   end
 
