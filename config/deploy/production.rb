@@ -16,7 +16,7 @@
 # used to set extended properties on the server.
 #server 'devel.misasa.okayama-u.ac.jp', user: 'falcon', roles: %w{web app db}, ssh_options: { keys: %w{/home/sisyphus/.ssh/id_rsa} }
 server '172.24.1.209', user: 'falcon', roles: %w{web app db}, ssh_options: { keys: %w{/home/sisyphus/.ssh/id_rsa} }
-
+set :deploy_to, "/srv/machine"
 set :relative_url_root, "/machine"
 
 
