@@ -1,7 +1,6 @@
 <%= render :partial => 'machine_header' %>
 <%- model_class = Session -%>
 
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -13,7 +12,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @machine.sessions_finished.order(started_at: :desc).each do |session| %>
+    <% @sessions.order(started_at: :desc).each do |session| %>
       <tr>
         <td><%= link_to session.name, machine_session_url(@machine, session) %> </td>
         <td><%= session.description %></td>

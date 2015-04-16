@@ -25,7 +25,7 @@ RSpec.describe SessionsController, :type => :controller do
   # adjust the attributes here as well.
   let(:machine){ FactoryGirl.create(:machine)}
   let(:valid_attributes) {
-    {machine_id: machine.id}
+    {machine_id: machine.id, name: 'test-123'}
 #    skip("Add a hash of attributes valid for your model")
   }
 
@@ -40,11 +40,47 @@ RSpec.describe SessionsController, :type => :controller do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all sessions as @sessions" do
+    before do
+      @params = Hash.new
+      @params[:machine_id] = machine.id
+      @params[:q] = Hash.new
+    end
+    it "assings searched sessions as @sessions" do
       session = Session.create! valid_attributes
-      get :index, {:machine_id => machine.id}, valid_session
+      session.started_at = Time.now
+      sleep 5
+      session.stopped_at = Time.now
+      session.save
+      @params[:q][:name_cont] = "test-123"
+#      get :index, {:machine_id => machine.id}, valid_session
+      get :index, @params, valid_session
       expect(assigns(:sessions)).to eq([session])
     end
+
+    it "assings searched sessions with time as @sessions" do
+      session = Session.create! valid_attributes
+      session.started_at = Time.now
+      sleep 2
+      session_at = Time.now
+      sleep 2
+      session.stopped_at = Time.now
+      session.save
+      @params[:at] = session_at
+#      @params[:q][:started_at_lteq] = session_at
+#      @params[:q][:stopped_at_gteq] = session_at      
+#      get :index, {:machine_id => machine.id}, valid_session
+      get :index, @params, valid_session
+      expect(assigns(:sessions)).to eq([session])
+    end
+
+    it "assigns all sessions as @sessions" do
+      session = Session.create! valid_attributes
+      @params[:q][:name_cont] = "hello"
+      get :index, {:machine_id => machine.id}, valid_session
+#      get :index, @params, valid_session
+      expect(assigns(:sessions)).to eq([session])
+    end
+
   end
 
   describe "GET show" do

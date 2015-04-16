@@ -5,7 +5,15 @@ class SessionsController < ApplicationController
   # GET /sessions
   # GET /sessions.json
   def index
-    @sessions = @machine.sessions
+    #@sessions = @machine.sessions
+    params[:q] = Hash.new unless params[:q]
+    params[:q][:machine_id_eq] = params[:machine_id]
+    if params[:at]
+      params[:q][:started_at_lteq] = params[:at]
+      params[:q][:stopped_at_gteq] = params[:at]      
+    end
+    @q = Session.search(params[:q])
+    @sessions = @q.result(distinct: true)
   end
 
   # GET /sessions/1
