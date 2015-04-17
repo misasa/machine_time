@@ -16,6 +16,10 @@
 
   <dt><strong><%= model_class.human_attribute_name(:stopped_at) %>:</strong></dt>
   <dd><%= @session.stopped_at %></dd>
+  <% if @machine.archiver_url %>
+  <dt><strong>Data:</strong></dt>
+  <dd><%= link_to("go archiver", @session.archiver_path ) %></dd>  
+  <% end %>
 </dl>
 
 <div class="form-actions">

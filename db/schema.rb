@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023083806) do
+ActiveRecord::Schema.define(version: 20150417100846) do
 
   create_table "machines", force: true do |t|
     t.string   "global_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141023083806) do
     t.string   "session_prefix"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "archiver_url"
   end
 
   create_table "sessions", force: true do |t|

@@ -14,6 +14,12 @@ class Session < ActiveRecord::Base
 	# 	self.global_id =  time.strftime("%Y%m%d%H%M%S") + '-' + sprintf('%06d',time.usec)[-3..-1] + sprintf('%03d',rand(1000))
 	# end
 
+	def archiver_path
+		return unless machine.archiver_url
+		path = machine.archiver_url
+		path += "?from=#{self.started_at}&to=#{self.stopped_at}&session_name=#{self.name}&session_gid=#{self.global_id}&session_id=#{self.id}"
+	end
+
 	def generate_name
 		if machine.session_prefix
 			name = "#{machine.session_prefix}#{number}"
