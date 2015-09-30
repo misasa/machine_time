@@ -15,7 +15,7 @@
   <tbody>
     <% @machine.sessions_finished.order(started_at: :desc).each do |session| %>
       <tr>
-        <td><%= link_to session.name, machine_session_url(@machine, session) %> </td>
+        <td><%= link_to session.name, machine_session_path(@machine, session) %> </td>
         <td><%= session.description %></td>
         <td><%= session.started_at %></td>
         <td><%= session.stopped_at %></td>
