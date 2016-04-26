@@ -19,6 +19,10 @@
         <td><%= session.started_at %></td>
         <td><%= session.stopped_at %></td>
         <td>
+          <% if @machine.archiver_url %>
+          <%= link_to t('.data', :default => t("helpers.links.data")),
+                      session.archiver_path, :class => 'btn btn-mini' %>
+          <% end %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_machine_session_path(@machine, session), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
