@@ -1,3 +1,3 @@
 == README
 
-Serve as MachineSentinel to log status
+A machine-gazer who monitors `machine-time' of analytical instruments
