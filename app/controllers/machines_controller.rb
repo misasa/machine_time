@@ -14,17 +14,25 @@ class MachinesController < ApplicationController
 
   # GET /machines/1/session
   # GET /machines/1/session.json
+  # GET /machines/1/session.label
   def current_session
     respond_to do |format|
       if @machine.current_session
          format.html { render action: 'show' }
          format.json { render json: @machine.current_session }
+         format.label { send_data([@machine.current_session].to_label, filename: "session_#{@machine.current_session.id}.label", type: "text/label") }
       else
          format.html { render action: 'show' }        
-         format.json { render json: {} }      
+        format.json { render json: {} }    
       end
     end
   end
+
+
+  # GET /machines/1/label
+  def label
+  end
+
 
   # GET /machines/new
   def new

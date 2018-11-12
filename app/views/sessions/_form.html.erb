@@ -38,6 +38,8 @@
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.label', :default => t("helpers.links.label")),
+              machine_session_path(@machine, @session, :format => 'label'), :class => 'btn' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 machine_sessions_path(@machine), :class => 'btn' %>
   </div>

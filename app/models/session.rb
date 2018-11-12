@@ -28,6 +28,9 @@ class Session < ActiveRecord::Base
 		end
 		self.name = name
 	end
-
+        
+        def to_label
+          "#{self.global_id},#{self.name}"
+        end
 
 end

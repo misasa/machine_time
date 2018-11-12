@@ -28,7 +28,9 @@
 
   <div class="form-actions">
     <%= f.submit 'Apply', :class => 'btn btn-primary' %>
+    <% if @machine.id %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 machine_path(@machine), :class => 'btn' %>
+    <% end %>
   </div>
 <% end %>

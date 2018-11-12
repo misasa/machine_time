@@ -14,11 +14,22 @@ class SessionsController < ApplicationController
     end
     @q = Session.search(params[:q])
     @sessions = @q.result(distinct: true)
+    respond_to do |format|
+      format.html { render action: 'index' }
+      format.json { render json: @sessions }
+      format.label { send_data(@sessions.to_label, filename: "machine_#{@machine.id}.label", type: 'text/label')  }
+    end
+    
   end
 
   # GET /sessions/1
   # GET /sessions/1.json
   def show
+    respond_to do |format|
+      format.html { render action: 'show' }
+      format.json { render json: @session }
+      format.label { send_data([@session].to_label, filename: "session_#{@session.id}.label", type: 'text/label')  }
+    end
   end
 
   # GET /sessions/new

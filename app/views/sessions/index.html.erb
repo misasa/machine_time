@@ -25,6 +25,8 @@
           <% end %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_machine_session_path(@machine, session), :class => 'btn btn-mini' %>
+          <%= link_to t('.label', :default => t("helpers.links.label")),
+                      machine_session_path(@machine, session, :format => 'label'), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       machine_session_path(@machine, session),
                       :method => :delete,

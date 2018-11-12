@@ -7,6 +7,7 @@ MachineTime::Application.routes.draw do
       get 'current_session'
       put 'start'
       put 'stop'
+      get 'label'
     end
     resources :sessions
   end
