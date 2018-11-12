@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'machine_time'
-set :repo_url, 'git@devel.misasa.okayama-u.ac.jp:rails/machine_time.git'
+set :repo_url, 'https://github.com/misasa/machine_time.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call

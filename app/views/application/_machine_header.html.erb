@@ -34,10 +34,7 @@
               :method => :put,
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => "Are you sure want to stop #{@machine.name}?")) },
               :class => 'btn btn-danger' if @machine.can_stop? %>
-  <%= link_to 'All labels',
-              machine_sessions_path(@machine, :format => 'label'),
-              :method => :get,
-              :class => 'btn' if @machine.can_stop? %>  
+
   <%= link_to t('.edit', :default => t("helpers.links.preference")),
               edit_machine_path(@machine),
               :class => 'btn' %>
