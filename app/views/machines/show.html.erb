@@ -25,8 +25,6 @@
           <%= link_to t('.data', :default => t("helpers.links.data")),
                       session.archiver_path, :class => 'btn btn-mini' %>
           <% end %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_machine_session_path(@machine, session), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       machine_session_path(@machine, session),
                       :method => :delete,
