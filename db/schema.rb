@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417100846) do
+ActiveRecord::Schema.define(version: 20181113052133) do
 
   create_table "machines", force: true do |t|
     t.string   "global_id"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20150417100846) do
     t.string   "archiver_url"
   end
 
+  create_table "session_targets", force: true do |t|
+    t.integer  "session_id"
+    t.integer  "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "session_targets", ["session_id"], name: "index_session_targets_on_session_id"
+  add_index "session_targets", ["target_id"], name: "index_session_targets_on_target_id"
+
   create_table "sessions", force: true do |t|
     t.string   "global_id"
     t.integer  "number"
@@ -33,6 +43,13 @@ ActiveRecord::Schema.define(version: 20150417100846) do
     t.datetime "stopped_at"
     t.integer  "machine_id"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "targets", force: true do |t|
+    t.string   "global_id",   null: false
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

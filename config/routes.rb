@@ -2,6 +2,10 @@ MachineTime::Application.routes.draw do
 #  resources :sessions
 
   root :to => 'machines#index'
+  resources :sessions do
+    resources :targets
+  end
+
   resources :machines do
     member do
       get 'current_session'
