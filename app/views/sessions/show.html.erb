@@ -33,7 +33,8 @@
   <tbody>
   <% @session.targets.each do |target| %>
   <tr>
-    <td><%= target.global_id %></td>
+    <td><%= link_to(target.global_id, target.query_path ) %>
+    </td>
     <td><%= target.description %></td>
     <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
