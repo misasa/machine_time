@@ -1,0 +1,3 @@
+service:
+  name: 'machine time'
+  url: 'https://github.com/misasa/machine_time'

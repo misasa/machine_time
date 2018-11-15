@@ -51,6 +51,7 @@ end
 gem 'twitter-bootstrap-rails'
 gem 'state_machine'
 gem 'sequenced'
+gem 'config'
 
 group :development, :test do
   gem 'sqlite3'
