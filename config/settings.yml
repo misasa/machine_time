@@ -1,3 +1,5 @@
 service:
-  name: 'machine time'
-  url: 'https://github.com/misasa/machine_time'
+  name: 'MachineTime'
+  repo_url: 'https://github.com/misasa/machine_time/'
+  help_url: 'https://dream.misasa.okayama-u.ac.jp/documentation/'
+  query_url: 'https://dream.misasa.okayama-u.ac.jp/?q='

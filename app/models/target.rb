@@ -4,6 +4,7 @@ class Target < ActiveRecord::Base
 
   validates :global_id, presence: true, allow_blank: false
   def query_path
+    Settings.service.query_url + global_id
     "https://dream.misasa.okayama-u.ac.jp/?q=#{self.global_id}"
   end
 end

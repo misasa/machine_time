@@ -7,7 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= nav_bar :brand => "top", :brand_link => root_path %>
+<%#= nav_bar :brand => Settings.service.name, :brand_link => root_path %>
+<%= nav_bar brand: Settings.service.name do %>
+ <%= menu_group pull: :right do %>
+  <%= menu_item "developer", Settings.service.repo_url %>
+  <%= menu_item "help", Settings.service.help_url %>
+ <% end %>
+<% end %>
 <div class="container">
 <%= bootstrap_flash %>
 <%= yield %>
