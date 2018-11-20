@@ -23,7 +23,7 @@
           <%= link_to t('.stop', :default => t("helpers.links.stop")),
                       stop_machine_path(machine),
                       :method => :put,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => "Are you sure want to stop #{machine.name}?")) },
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => "Are you sure you want to stop #{machine.name}?")) },
                       :class => 'btn btn-mini btn-danger' if machine.can_stop? %>
         </td> 
       </tr>
