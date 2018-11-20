@@ -1,4 +1,4 @@
-# Rails project -- machine_time
+# rails project -- machine_time
 
 A machine-gazer who monitors `machine-time` of analytical instruments
 
