@@ -26,11 +26,19 @@
           <%= link_to glyph(:search),
                       session.archiver_path, :class => 'btn' %>
           <% end %>
-          <%= link_to glyph(:trash),
+          <% if @machine.sessions_running.include?(session) %>
+            <%= link_to glyph(:stop),
+                     stop_machine_path(@machine),
+                     :method => :put,
+                     :data => { :confirm => "Are you sure want to stop the session #{session.name}?" },
+                     :class => 'btn btn-danger' if @machine.can_stop? %>
+          <% else %>
+            <%= link_to glyph(:trash),
                       machine_session_path(@machine, session),
                       :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure you want to delete the session?')) },
+                      :data => { :confirm => "Are you sure you want to delete the session #{session.name}?" },
                       :class => 'btn btn-danger' %>
+          <% end %>
         </td>
 
       </tr>

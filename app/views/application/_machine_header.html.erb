@@ -14,7 +14,7 @@
   <%= link_to glyph(:stop),
               stop_machine_path(@machine),
               :method => :put,
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => "Are you sure want to stop #{@machine.name}?")) },
+              :data => { :confirm => "Are you sure want to stop the session #{@machine.current_session.name}?" },
               :class => 'btn btn-danger' if @machine.can_stop? %>
   <%= link_to glyph(:tag),
               current_session_machine_path(@machine, :format => 'label'),
