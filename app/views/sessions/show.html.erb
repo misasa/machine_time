@@ -47,16 +47,18 @@
   </tbody>
   <tfoot>
     <tr>
+  <td>
 <%= form_for [@session, Target.new] do |f| %>
-  <td>
-  <%= f.text_field :global_id, class: "form-control input-sm" %>
-  </td>
-  <td>
+  <%= f.text_field :global_id, class: "form-control" %>
   <%= f.button class: "btn btn-default" do %>
    <%= glyph(:plus) %>
   <% end %>
-  </td>
 <% end %>
+
+  </td>
+  <td>
+  </td>
     </tr>
   </tfoot>
 </table>
+
