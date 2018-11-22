@@ -17,14 +17,21 @@
     <%# @machine.sessions_finished.order(started_at: :desc).each do |session| %>
     <% @machine.sessions.order(started_at: :desc).each do |session| %>
       <tr>
-        <td><%= link_to session.name, machine_session_path(@machine, session) %> </td>
+        <td>
+	  <%= link_to session.name, machine_session_path(@machine, session) %>
+	</td>
         <td><%= session.description %></td>
         <td><%= session.started_at %></td>
         <td><%= session.stopped_at %></td>
         <td>
-          <% if @machine.archiver_url %>
-          <%= link_to glyph(:search),
-                      session.archiver_path, :class => 'btn' %>
+	  <%= link_to glyph(:tag),
+              machine_session_path(@machine, session, :format => 'label'),
+              :method => :get,
+	      :title => 'download label',
+              :class => 'btn' %>
+          <% unless @machine.archiver_url.blank? %>
+            <%= link_to glyph(:search),
+                        session.archiver_path, :class => 'btn' %>
           <% end %>
           <% if @machine.sessions_running.include?(session) %>
             <%= link_to glyph(:stop),
@@ -53,6 +60,7 @@
       <%= link_to glyph(:tag),
               machine_sessions_path(@machine, :format => 'label'),
               :method => :get,
+              :title => 'download labels',
               :class => 'btn' %>
       </th>
     </tfoot>

@@ -4,28 +4,27 @@
 <p><%= @machine.description %></p>
 
 <div>
-  <%= link_to glyph(:cog),
+  <%#= link_to glyph(:cog),
               edit_machine_path(@machine),
               :class => 'btn' %>
   <%= link_to glyph(:play),
               start_machine_path(@machine),
               :method => :put,
               :class => 'btn btn-primary' if @machine.can_start? %>
-  <%= link_to glyph(:stop),
+  <%#= link_to glyph(:stop),
               stop_machine_path(@machine),
               :method => :put,
-              :data => { :confirm => "Are you sure want to stop the session #{@machine.current_session.name}?" },
+              :data => { :confirm => "Are you sure you want to stop the session #{@machine.current_session.name}?" },
               :class => 'btn btn-danger' if @machine.can_stop? %>
-  <%= link_to glyph(:tag),
+  <%#= link_to glyph(:tag),
               current_session_machine_path(@machine, :format => 'label'),
               :method => :get,
               :class => 'btn' if @machine.can_stop? %>
 
-
 </div>
 <strong>state: </strong> <%= @machine.state %>
 <br/>
-<% if @machine.current_session %>
+<% if @machine.current_session && false %>
 <h2>
 <%= link_to @machine.current_session.name, machine_session_path(@machine, @machine.current_session) %> &lt <%= @machine.current_session.global_id %> &gt
 </h2>

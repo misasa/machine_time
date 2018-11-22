@@ -4,7 +4,8 @@
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
   <dd><%= @session.name %> &lt<%=@session.global_id %>&gt
       <%= link_to glyph(:tag),
-              machine_session_path(@machine, @session, :format => 'label'), :class => 'btn' %>
+	  machine_session_path(@machine, @session, :format => 'label'),
+          :class => 'btn' %>
       <%= link_to glyph(:pencil),
               edit_machine_session_path(@machine, @session), :class => 'btn' %>
   <% if @machine.archiver_url %>
