@@ -1,6 +1,6 @@
 # rails project -- machine_time
 
-A machine-gazer who monitors `machine-time` of analytical instruments
+A machine-gazer who monitors status or `machine-time` of analytical instruments
 
 # Description
 
