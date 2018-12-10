@@ -4,6 +4,5 @@ A machine-gazer who monitors status or `machine-time` of analytical instruments
 
 # Description
 
-A machine-gazer who monitors machine-time of analytical instruments.
-This program is with web interface.  The session can be controlled
-remotely by command-line tools provided by [gem package -- godigo](https://github.com/misasa/godigo).
+A machine-gazer who monitors status or `machine-time` of analytical instruments.
+This program is Web App.  The status is modified by this Web App or programs by [gem package -- godigo](https://github.com/misasa/godigo).
