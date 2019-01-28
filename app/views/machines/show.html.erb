@@ -21,8 +21,8 @@
 	  <%= link_to session.name, machine_session_path(@machine, session) %>
 	</td>
         <td><%= session.description %></td>
-        <td><%= session.started_at %></td>
-        <td><%= session.stopped_at %></td>
+        <td><%= session.started_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td><%= session.stopped_at.strftime("%Y/%m/%d %H:%M") if session.stopped_at %></td>
         <td>
 	  <%= link_to glyph(:tag),
               machine_session_path(@machine, session, :format => 'label'),

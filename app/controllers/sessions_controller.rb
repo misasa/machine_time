@@ -92,6 +92,9 @@ class SessionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def session_params
-      params.require(:session).permit(:global_id, :number, :name, :description, :started_at, :stopped_at, :machine_id, :user_id)
+      par = params.require(:session).permit(:global_id, :number, :name, :description, :started_at, :stopped_at, :machine_id, :user_id)
+      par[:started_at] =  DateTime.strptime(par[:started_at], "%Y-%m-%dT%T.%L%z")
+      par[:stopped_at] =  DateTime.strptime(par[:stopped_at], "%Y-%m-%dT%T.%L%z") if par[:stopped_at]
+      par
     end
 end
