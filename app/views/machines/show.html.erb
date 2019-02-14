@@ -38,7 +38,7 @@
                      stop_machine_path(@machine),
                      :method => :put,
                      :data => { :confirm => "Are you sure want to stop the session #{session.name}?" },
-                     :class => 'btn btn-danger' if @machine.can_stop? %>
+                     :class => 'btn btn-danger' %>
           <% else %>
             <%= link_to glyph(:trash),
                       machine_session_path(@machine, session),
