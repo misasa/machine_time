@@ -9,4 +9,4 @@ This program is Web App.  The status is modified by this Web App or programs by 
 
 # Application
 
-- [Machines for stone](http://database.misasa.okayama-u.ac.jp/machine)
+- [web app -- Session for machines](http://database.misasa.okayama-u.ac.jp/machine)
