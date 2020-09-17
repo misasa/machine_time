@@ -119,6 +119,6 @@ class MachinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def machine_params
-      params.require(:machine).permit(:name, :description, :session_prefix, :archiver_url)
+      params.require(:machine).permit(:name, :stage_name, :description, :session_prefix, :archiver_url)
     end
 end

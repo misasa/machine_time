@@ -22,8 +22,13 @@
               :class => 'btn' if @machine.can_stop? %>
 
 </div>
-<strong>state: </strong> <%= @machine.state %>
-<br/>
+<strong>state: </strong> <%= @machine.state %><br/>
+<% unless @machine.stage_name.blank? %>
+  <strong>stage: </strong>
+  [<span id="l_world_x">--</span>, <span id="l_world_y">--</span>] @<%= link_to(@machine.stage_name, Settings.service.vs_remote_url + "#{@machine.stage_name}"  ) %>
+
+  <br/>
+<% end %>
 <% if @machine.current_session && false %>
 <h2>
 <%= link_to @machine.current_session.name, machine_session_path(@machine, @machine.current_session) %> &lt <%= @machine.current_session.global_id %> &gt
@@ -31,3 +36,55 @@
 <p><%= @machine.current_session.description %></p>
 <% end %>
 </div>
+<script>
+  var base_topic = "<%= @machine.stage_name %>";
+  var topic_info = 'stage/info/' + base_topic;
+  var topic_ctrl = 'stage/ctrl/' + base_topic;
+  // MQTT over WebSocketの初期化
+  // var wsbroker = 'database.misasa.okayama-u.ac.jp';
+  var wsbroker = "<%= Settings.service.wsbroker %>";
+  // var wsport = 12473;
+  var wsport = <%= Settings.service.wsport %>;
+  // MQTTのクライアントを作成する クライアントID名はランダムに作る
+  var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws", "myclientid_" + parseInt(Math.random() * 100, 10));
+  // 切断時のコールバック
+  client.onConnectionLost = function (responseObject) {
+    console.debug("CONNECTION LOST - " + responseObject.errorMessage);    
+  };
+  // MQTTメッセージSubscribe時のコールバック
+  client.onMessageArrived = function (message) {
+    console.debug("RECEIVE ON " + message.destinationName + " PAYLOAD " + message.payloadString);   //debugボックスに表示
+    var stage_name = message.destinationName;   // stage名はトピック名とする
+
+    var stage_data = JSON.parse( message.payloadString );   // ドローンのデータを連想配列にして格納
+
+    var world_x  = parseFloat( stage_data["position"]["x_world"] );  // X world
+    var world_y  = parseFloat( stage_data["position"]["y_world"] ); // Y world
+    if (isNaN(world_x) || isNaN(world_y)){
+        return;
+    }
+    document.getElementById('l_world_x').innerHTML = world_x;
+    document.getElementById('l_world_y').innerHTML = world_y;
+  }
+  // MQTTの接続オプション
+  var options = {
+    useSSL: true,
+    timeout: 3,
+    onSuccess: function () {
+        console.debug("CONNECTION SUCCESS");
+        client.subscribe(topic_info, {qos: 1});
+    },
+    onFailure: function (message) {
+        console.debug("CONNECTION FAILURE - " + message.errorMessage);
+    }
+  };
+
+  // サーバーがHTTPS対応だった時の処理
+  if (location.protocol == "https:") {
+    //options.useSSL = false;
+  }
+
+  // 最初にメッセージを表示してMQTTをブローカーに接続
+  console.debug("CONNECT TO " + wsbroker + ":" + wsport);
+  client.connect(options);        // 接続
+</script>
