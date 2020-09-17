@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113052133) do
+ActiveRecord::Schema.define(version: 20200917125530) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "machines", force: true do |t|
     t.string   "global_id"
@@ -22,6 +25,7 @@ ActiveRecord::Schema.define(version: 20181113052133) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "archiver_url"
+    t.string   "stage_name"
   end
 
   create_table "session_targets", force: true do |t|
@@ -31,8 +35,8 @@ ActiveRecord::Schema.define(version: 20181113052133) do
     t.datetime "updated_at"
   end
 
-  add_index "session_targets", ["session_id"], name: "index_session_targets_on_session_id"
-  add_index "session_targets", ["target_id"], name: "index_session_targets_on_target_id"
+  add_index "session_targets", ["session_id"], name: "index_session_targets_on_session_id", using: :btree
+  add_index "session_targets", ["target_id"], name: "index_session_targets_on_target_id", using: :btree
 
   create_table "sessions", force: true do |t|
     t.string   "global_id"

@@ -1,0 +1,8 @@
+service:
+    name: 'Machines for stone@devel'
+    repo_url: 'https://github.com/misasa/machine_time/'
+    help_url: 'https://dream.misasa.okayama-u.ac.jp/documentation/'
+    query_url: 'https://dream.misasa.okayama-u.ac.jp/?q='
+    vs_remote_url: 'https://database.misasa.okayama-u.ac.jp/vs-remote/map_button.html?topic='
+    wsbroker: 'database.misasa.okayama-u.ac.jp'
+    wsport: 12473
